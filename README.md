@@ -3,26 +3,35 @@ These are instructions for setting up a radius server on Kali Linux for serving 
 
 You will need a Wireless Access Point that is capable of serving wireless that can back off to a radius server, and a Virtual Machine (I've  used Kali 2020.1) which has network connectivity to the rest of your network (to get DNS/DHCP/Routing).
 
-# Installing software
+# Installing software for the server
 We will install freeradius for this.
 
 `sudo apt-get install freeradius freeradius-utils`
 
-Move the eap file into the {install location}/mods-enabled directory, replacing the one already here
+Now clone this repo into a temporary location 
+`git clone https://github.com/SecurityJon/VulnerableEnterpriseWirelessServer.git`
 
-Move the radiusd.conf file into the {install location} directory
+Find the freeradius install location, it's base path is typically '/etc/freeradius/'
 
-Move the clients.conf into the {install location} directory
+Move the eap file from the {git repo}/server_files/mods-enabled/ location into the {install location}/mods-enabled directory, replacing the one already here
+
+Move the radiusd.conf file from the {git repo}/server_files/ location into the {install location} directory
+
+Move the clients.conf file from the {git repo}/server_files/ location into the {install location} directory
 
 Edit the {install location}/clients.conf file and change the "ipaddr = 172.16.10.8" at the top of the file to that of the IP address of your Access Point
 
 # Creating Certificates
 
+
+
+file from the {git repo}/server_files/certificate_files/ location into the
+
 We'll need client and server certificates for TLS. 
 
-Move the client.cnf into {install location}/certs directory
-Move the ca.cnf into {install location}/certs directory
-Move the server.cnf into {install location}/certs directory
+Move the client.cnf file from the {git repo}/server_files/certificate_files/ location into the {install location}/certs directory
+Move the ca.cnf file from the {git repo}/server_files/certificate_files/ location into the {install location}/certs directory
+Move the server.cnf file from the {git repo}/server_files/certificate_files/ location into the {install location}/certs directory
 
 Now make all of the certificates and keys
 ```
